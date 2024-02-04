@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="user-type">
+            <label><input type="radio" name="userType" value="admin" onclick="showLoginForm('admin')" checked> Admin</label>
+            <label><input type="radio" name="userType" value="student" onclick="showLoginForm('student')"> Student</label>
+        </div>
+
+        <!-- Admin Form -->
+        <form class="login-form" id="admin-form" onsubmit="return validateForm('admin')">
+            <h2>Admin Login</h2>
+            <div class="input-group">
+                <label for="admin-username">Username</label>
+                <input type="text" id="admin-username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="admin-password">Password</label>
+                <input type="password" id="admin-password" name="password" required>
+            </div>
+            <button type="submit" class="login-button">Login</button>
+        </form>
+
+        <!-- Student Form -->
+        <form class="login-form" id="student-form" onsubmit="return validateForm('student')" style="display:none;">
+            <h2>Student Login</h2>
+            <div class="input-group">
+                <label for="student-username">Username</label>
+                <input type="text" id="student-username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="student-password">Password</label>
+                <input type="password" id="student-password" name="password" required>
+            </div>
+            <button type="submit" class="login-button">Login</button>
+        </form>
+    </div>
+
+    <script>
+        function showLoginForm(userType) {
+            document.getElementById('admin-form').style.display = userType === 'admin' ? 'block' : 'none';
+            document.getElementById('student-form').style.display = userType === 'student' ? 'block' : 'none';
+        }
+
+        function validateForm(formType) {
+            let username = document.getElementById(formType + '-username').value;
+            let password = document.getElementById(formType + '-password').value;
+
+            if (username === '1RN21CD015' && password === '12345678') {
+                // Redirect to another page if credentials are correct
+                window.location.href = 'student.html'; // Replace 'welcome.html' with the actual page you want to redirect to
+                return false; // Prevent default form submission
+            } else {
+                alert('Invalid Username or Password');
+                return false; // Prevent form submission
+            }
+        }
+    </script>
+</body>
+</html>

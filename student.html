@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Selection Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #00254d;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgb(255, 255, 255);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(2, 2, 5, 0.737);
+        }
+        h2{
+            color: #007bff;
+        }
+        h3 {
+            padding-top: 20px;
+            color: #2200ff;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            background: #f9f9f9;
+            border: 1px solid rgb(52, 5, 241);
+            border-radius: 8px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .option:hover {
+            box-shadow: 0 0 10px rgba(4, 43, 85, 0.764);
+            transform: scale(1.1);
+        }
+        .option input[type="radio"] {
+            margin-right: 10px;
+        }
+        .option-image {
+            flex-shrink: 0;
+            width: 80px; /* Compact size */
+            height: 60px; /* Uniform height */
+            margin-right: 15px;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+        .option-image img {
+            width: 100%;
+            height: auto;
+            object-fit:cover;
+        }
+        .option-details {
+            flex-grow: 1;
+            padding: 10px;
+        }
+        .option-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 0;
+            color: #333;
+        }
+        .option-description {
+            font-size: 14px;
+            margin: 10px 0 0;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border-style:groove;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #00254d;
+            border-style: groove;
+            box-shadow:0 10px 30px #333;
+        }
+        #selectedOption {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Welcome, [Name]</h2>
+    <p>USN: [USN]</p>
+    <p>Semester: [Semester]</p>
+
+    
+    <div class= "choice-section" id="chooseOptionSection">
+        <h3>Choose an option:</h3>
+        <div class="option" onclick="document.getElementById('option1').click();">
+            <input type="radio" id="option1" name="option" value="Option 1" style="margin-right: 10px;" onclick="updateSelection('Artifical Intelligence')">
+            <div class="option-image">
+                <img src="img1.jpg" alt="Option 1">
+            </div>
+            <div class="option-details">
+                <p class="option-title">1. ARTIFICAL INTELLIGENCE</p>
+                <p class="option-description">21CSXXX  - Artificial Intelligence and Machine Learning.</p>
+            </div>
+        </div>
+        <div class="option" onclick="document.getElementById('option2').click();">
+            <input type="radio" id="option2" name="option" value="Option 2" style="margin-right: 10px;" onclick="updateSelection('Data Science')">
+            <div class="option-image">
+                <img src="image2.png" alt="Option 2">
+            </div>
+            <div class="option-details">
+                <p class="option-title">2. DATA SCIENCE</p>
+                <p class="option-description">21CSXXX   -  Data Science and Analytics.</p>
+            </div>
+        </div>
+        <div class="option" onclick="document.getElementById('option3').click();">
+            <input type="radio" id="option3" name="option" value="Option 3" style="margin-right: 10px;" onclick="updateSelection('Advanced JAVA')">
+            <div class="option-image">
+                <img src="Java-Logo.png" alt="Option 3">
+            </div>
+            <div class="option-details">
+                <p class="option-title">3. ADVANCED JAVA</p>
+                <p class="option-description">21CSXXX -  Advanced Java Programming.</p>
+            </div>
+        </div>
+        <button type="button" onclick="confirmChoice()">Confirm</button>
+    </div>
+    <p id="selectedOption"></p>
+</div>
+
+<script>
+    var selectedOption = "";
+
+    function updateSelection(choice) {
+        selectedOption = choice;
+    }
+
+    function confirmChoice() {
+        if (selectedOption === "") {
+            alert("Please select an option.");
+            return;
+        }
+        var confirmAction = confirm("Are you sure you want to select: " + selectedOption + "?");
+        if (confirmAction) {
+            document.getElementById("selectedOption").innerText = "You have selected '" + selectedOption + "'.";
+            document.getElementById("chooseOptionSection").style.display = 'none'; // Hide the options section
+        } else {
+            document.getElementById("selectedOption").innerText = "Selection cancelled.";
+        }
+    }
+</script>
+
+</body>
+</html>
